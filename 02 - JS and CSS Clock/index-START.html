@@ -71,25 +71,27 @@
   </style>
 
   <script>
-    const hrHand = document.querySelector('.hour-hand')
-    const minHand = document.querySelector('.min-hand')
-    const secondHand = document.querySelector('.second-hand')
-    setInterval((setDate) => {
-      const now = new Date()
-      const seconds = now.getSeconds()
-      const secondsDegrees = ((seconds / 60) * 360) + 90;
-      secondHand.style.transform = `rotate(${secondsDegrees}deg)`
-
-      const mnt = now.getMinutes()
-      const mntDeg = ((mnt/60) * 360) + 90
-      minHand.style.transform = `rotate(${mntDeg}deg)`
-      console.log(mnt)
-      
-      const hr = now.getHours()
-      const hrDeg = ((hr/12) * 360) + 90
-      hrHand.style.transform = `rotate(${hrDeg}deg)`
-      console.log(hr)
-      
+    const sHand = document.querySelector('.second-hand')
+    const hHand = document.querySelector('.hour-hand')
+    const mHand = document.querySelector('.min-hand')
+    //make a function that execute in one second
+    setInterval(() => {
+      //get date
+      date = new Date()
+      second = date.getSeconds()
+      minutes = date.getMinutes()
+      hours = date.getHours()
+      //get deg
+      hourDeg = ((hours/12) * 360) + 90;
+      mntDeg = ((minutes/60) * 360) + 90;
+      scndDeg = ((second/60) * 360) + 90;
+      //rotate
+    transDeg = (target, deg) => {
+        target.style.transform = `rotate(${deg}deg)`
+      } 
+      transDeg(hHand, hourDeg)
+      transDeg(sHand, scndDeg)
+      transDeg(mHand, mntDeg)
     }, 1000);
     
   </script>
